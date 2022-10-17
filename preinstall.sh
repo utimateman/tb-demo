@@ -40,3 +40,9 @@ ln -sT spark-3.1.3-bin-hadoop3.2 /usr/local/spark
 echo "export SPARK_HOME=/usr/local/spark" >> ~/.bashrc
 echo "export PATH=$PATH:$SPARK_HOME/bin" >> ~/.bashrc
 source ~/.bashrc
+
+# Add Extra .jar Files
+wget https://repo1.maven.org/maven2/org/apache/hadoop/hadoop-aws/3.2.0/hadoop-aws-3.2.0.jar 
+wget https://repo1.maven.org/maven2/com/amazonaws/aws-java-sdk-bundle/1.11.860/aws-java-sdk-bundle-1.11.860.jar 
+mv hadoop-aws-3.2.0.jar /usr/local/spark/jars/hadoop-aws-3.2.0.jar 
+mv aws-java-sdk-bundle-1.11.860.jar /usr/local/spark/jars/aws-java-sdk-bundle-1.11.860.jar

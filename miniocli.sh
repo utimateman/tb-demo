@@ -7,8 +7,7 @@ curl https://dl.min.io/client/mc/release/linux-amd64/mc \
 
 chmod +x $HOME/minio-binaries/mc
 export PATH=$PATH:$HOME/minio-binaries/
- mc --help
+mc --help
 
-# try connect mc
-mc alias set demo-minio http://localhost:9000 minio minio123 
+
 
