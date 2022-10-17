@@ -14,7 +14,7 @@ import json
 
 ##################### UPDATE DELTA TABLE #####################
 
-# -> map age with label
+# -> map age with label (forget)
 # -> gender to upper case 
 # -> is_processed from "no" to "yes"
 
