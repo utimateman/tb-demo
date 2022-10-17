@@ -49,5 +49,5 @@ history = spark.sql("DESCRIBE HISTORY delta.`s3a://""" + bucket_name + "/raw_use
 history.show(20, False)
 
 
-past_df = spark.read.format("delta").option("timestampAsOf", "2022-10-17 17:37:34").load("s3a://" + bucket_name + "/raw_user_data")
-past_df.show()
+# past_df = spark.read.format("delta").option("timestampAsOf", "2022-10-17 17:37:34").load("s3a://" + bucket_name + "/raw_user_data")
+# past_df.show()
