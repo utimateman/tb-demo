@@ -57,9 +57,10 @@ print("[ successful ] - write on " + bucket_name + "/" + schema_name)
 
 spark.sql(
     """
-    SELECT *
-    FROM delta.`s3a://""" + bucket_name + "/" + schema_name + "`"
+    UPDATE  delta.`s3a://""" + bucket_name + "/" + schema_name + "`" +
+    " SET Genre='COMPUTER GAMES HAHA'"
 )
+
 
 out_df = spark.sql(
     """
