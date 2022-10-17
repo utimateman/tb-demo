@@ -32,6 +32,7 @@ yes | apt-get install vim
 
 wget https://dlcdn.apache.org/spark/spark-3.1.3/spark-3.1.3-bin-hadoop3.2.tgz
 tar xfz spark-3.1.3-bin-hadoop3.2.tgz -C /usr/local/
+ln -sT spark-3.1.3-bin-hadoop3.2 spark
 ln -sT spark-3.1.3-bin-hadoop3.2 /usr/local/spark
 apt install curl mlocate default-jdk   -y
 
