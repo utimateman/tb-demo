@@ -30,11 +30,12 @@ docker run \
 yes | apt-get install wget
 yes | apt-get install vim
 
+apt install curl mlocate default-jdk   -y
+
 wget https://dlcdn.apache.org/spark/spark-3.1.3/spark-3.1.3-bin-hadoop3.2.tgz
 tar xfz spark-3.1.3-bin-hadoop3.2.tgz -C /usr/local/
 ln -sT spark-3.1.3-bin-hadoop3.2 spark
 ln -sT spark-3.1.3-bin-hadoop3.2 /usr/local/spark
-apt install curl mlocate default-jdk   -y
 
 echo "export SPARK_HOME=/usr/local/spark" >> ~/.bashrc
 echo "export PATH=$PATH:$SPARK_HOME/bin" >> ~/.bashrc
