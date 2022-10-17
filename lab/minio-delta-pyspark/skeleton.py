@@ -1,20 +1,15 @@
 import time
 from pyspark import SparkContext
 from pyspark.sql import SparkSession
-import pyspark.sql.functions as func
-from pyspark.sql.types import IntegerType, StringType
-
 from delta import *
 import os
 import random
+import pandas as pd
 
 from datetime import datetime
 import json
 
-
-
-##################### GET TABLE HISTORY #####################
-
+##################### CREATE DELTA TABLE #####################
 
 # ----- [ Initialize PySpark and S3 Connections ] -----
 
@@ -26,8 +21,6 @@ def load_config(spark_context: SparkContext):
     spark_context._jsc.hadoopConfiguration().set('fs.s3a.endpoint','localhost:9000')
     spark_context._jsc.hadoopConfiguration().set('fs.s3a.connection.ssl.enabled','false')
 
-
-
 builder = SparkSession.builder \
                 .appName('Pyspark Delta Minio') \
                 .config("spark.sql.extensions", "io.delta.sql.DeltaSparkSessionExtension") \
@@ -38,16 +31,39 @@ load_config(spark.sparkContext)
 
 
 
-bucket_name = "demo-bucket"
+# ----- [ Create Example Data ] -----
+
+# Read CSV data using Pandas
+file_path = "YOUR CSV FILE"
+computer_games_df = pd.read_csv(file_path)
+
+# Convert Pandas dataframe to Spark dataframe 
+computer_games_spark_df = spark.createDataFrame(computer_games_df)
+computer_games_spark_df.show()
 
 
-history = spark.sql("DESCRIBE HISTORY delta.`s3a://""" + bucket_name + "/raw_user_data`")
-history.select('timestamp').show(20, False)
 
 
-history = spark.sql("DESCRIBE HISTORY delta.`s3a://""" + bucket_name + "/raw_user_data`")
-history.show(20, False)
+# ----- [ Create Delta Table ] -----
+
+bucket_name = "YOUR BUCKET NAME"
+schema_name = "YOUR SCHEMA NAME"
+schema_format = "FILE FORMAT / SCHEMA FORMAT / STORAGE LAYER / WRITING FORMAT"
+computer_games_spark_df.write.format(schema_format).mode("append").option("mergeSchema", "true").save("s3a://" + bucket_name + "/" + schema_name)
+print("[ successful ] - write on " + bucket_name + "/" + schema_name)
 
 
-past_df = spark.read.format("delta").option("timestampAsOf", "2022-10-17 17:37:34").load("s3a://" + bucket_name + "/raw_user_data")
-past_df.show()
+# ----- [ Echo Printing: Verification ] -----
+
+
+out_df = spark.sql(
+    """
+    SELECT *
+    FROM delta.`s3a://""" + bucket_name + "/" + schema_name + "`"
+)
+
+print("---------- Computer Games Data (Delta) ----------")
+out_df.show() 
+
+# --------------------------------------
+
