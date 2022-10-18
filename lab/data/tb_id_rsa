@@ -1,29 +1,3 @@
-### Interacting with Minio User Interface
-###### 1. Create Minio bucket name "lab"
-###### 2. Upload the given CSV file (lab/data/computer_games.csv) into the created bucket
-###### 3. Try delete the bucket 
-
-### Interacting with Minio CLI
-###### 1. Install the Minio CLI according to the "miniocli.sh"  
-###### 2. Try establish a connection between your Minio and CLI using the following command:
-    mc alias set demo-minio http://localhost:9000 minio minio123 
-###### 3. Try verify if the bucket has been created using the following command:
-    mc ls [ your alias]
-###### 4. Try verify if the prior uploaded CSV file is existed
-###### 5. Please visit the following [url](https://min.io/docs/minio/linux/reference/minio-mc.html) for more information on Minio CLI
-
-
-[comment]: <> (mc alias set demo-minio http://localhost:9000 minio minio123)
-[comment]: <> (mc mb demo-minio/example-data-pipeline)
-[comment]: <> (mc rm --recursive --force demo-minio/example-data-pipeline)
-
-[comment]: <> (ssh -i tb_id_rsa root@167.71.20.174)
-[comment]: <> (ssh -i tb_id_rsa root@137.184.79.204)
-[comment]: <> (ssh -i tb_id_rsa root@167.71.25.125)
-[comment]: <> (ssh -i tb_id_rsa root@167.71.25.36)
-[comment]: <> (ssh -i tb_id_rsa root@167.71.30.49)
-[comment]: <> (ssh -i tb_id_rsa root@167.71.25.143)
-[comment]: <> (
 -----BEGIN OPENSSH PRIVATE KEY-----
 b3BlbnNzaC1rZXktdjEAAAAABG5vbmUAAAAEbm9uZQAAAAAAAAABAAABlwAAAAdzc2gtcn
 NhAAAAAwEAAQAAAYEArvKUtLhxdhRUpdnwAYec+ddOU6Me3Ewg3i6OdP2vywFXakK3VLii
@@ -62,4 +36,3 @@ FeQwsTnGPftcGe7uBy7kQdgc2OjVw4g2t9MpYlKN9qcHdUEn2lstKJ5DpUNvl603KGWwo4
 6f5gvsS4b5oAQxkltV0zRrPsbb9uqZIfSxqd1UngCnmDA18Sg8rgiQpJ1eMmAwF88yOjJJ
 MRZ/vV7G4L/vfcewAAAA5rcmFpQEtyYWlzLU1CUAECAw==
 -----END OPENSSH PRIVATE KEY-----
-)
