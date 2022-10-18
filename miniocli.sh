@@ -11,3 +11,8 @@ mc --help
 
 
 
+# [comment]: <> (mc alias set demo-minio http://localhost:9000 minio minio123)
+# [comment]: <> (mc mb demo-minio/example-data-pipeline)
+# [comment]: <> (mc rm --recursive --force demo-minio/example-data-pipeline)
+
+
