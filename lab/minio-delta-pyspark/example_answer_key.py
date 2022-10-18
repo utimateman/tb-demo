@@ -35,10 +35,7 @@ load_config(spark.sparkContext)
 
 # Read CSV data using Pandas
 file_path = "../data/computer_games.csv"
-computer_games_df = pd.read_csv(file_path)
-
-# Convert Pandas dataframe to Spark dataframe 
-computer_games_spark_df = spark.createDataFrame(computer_games_df)
+computer_games_spark_df = spark.read.csv(file_path)
 computer_games_spark_df.show()
 
 
@@ -55,11 +52,11 @@ print("[ successful ] - write on " + bucket_name + "/" + schema_name)
 
 # ----- [ Echo Printing: Verification ] -----
 
-spark.sql(
-    """
-    UPDATE  delta.`s3a://""" + bucket_name + "/" + schema_name + "`" +
-    " SET Genre='COMPUTER GAMES HAHA'"
-)
+# spark.sql(
+#     """
+#     UPDATE  delta.`s3a://""" + bucket_name + "/" + schema_name + "`" +
+#     " SET Genre='COMPUTER GAMES HAHA'"
+# )
 
 
 out_df = spark.sql(
